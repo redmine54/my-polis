@@ -1,0 +1,10 @@
+# backend/requirements.txt
+
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+pydantic
+scikit-learn
+pandas
+python-dotenv

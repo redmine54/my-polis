@@ -1,0 +1,58 @@
+# docker-compose.yml
+
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: polis
+      POSTGRES_PASSWORD: polispass
+      POSTGRES_DB: polisdb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - polis-net
+
+  api:
+    build:
+      context: ./docker
+      dockerfile: api.Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg2://polis:polispass@db:5432/polisdb
+    volumes:
+      - ./backend:/app
+      - ./sample_data:/sample_data
+    depends_on:
+      - db
+    networks:
+      - polis-net
+
+  frontend:
+    build:
+      context: ./docker
+      dockerfile: frontend.Dockerfile
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - api
+    networks:
+      - polis-net
+
+  nginx:
+    build:
+      context: ./docker
+      dockerfile: nginx.Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+      - frontend
+    networks:
+      - polis-net
+
+volumes:
+  db_data:
+
+networks:
+  polis-net:

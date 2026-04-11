@@ -1,0 +1,16 @@
+user_id,question_id,answer
+u1,q1,1
+u1,q2,-1
+u1,q3,0
+u2,q1,1
+u2,q2,-1
+u2,q3,1
+u3,q1,-1
+u3,q2,1
+u3,q3,0
+u4,q1,1
+u4,q2,1
+u4,q3,1
+u5,q1,-1
+u5,q2,-1
+u5,q3,-1
