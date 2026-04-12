@@ -5,6 +5,7 @@ uvicorn
 sqlalchemy
 psycopg2-binary
 pydantic
+pydantic-settings
 scikit-learn
 pandas
 python-dotenv
