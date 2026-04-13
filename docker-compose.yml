@@ -23,7 +23,7 @@ services:
       - ./sample_data:/sample_data
     #      - ./backend/app:/app/app
     ports:
-      - "8000:8000"
+      -
     depends_on:
       - db
     networks:
