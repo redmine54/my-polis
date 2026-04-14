@@ -17,5 +17,5 @@ def health():
     return {"status": "ok"}
 
 
-app.include_router(responses.router, prefix="/api")
-app.include_router(analysis.router, prefix="/api")
+app.include_router(responses.router, prefix="/api/responses")
+app.include_router(analysis.router, prefix="/api/analysis")

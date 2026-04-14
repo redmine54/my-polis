@@ -32,8 +32,8 @@ services:
     build:
       context: .
       dockerfile: docker/frontend.Dockerfile
-    volumes:
-      - ./frontend:/usr/share/nginx/html:ro
+    #volumes:
+    #  - ./frontend:/usr/share/nginx/html:ro
     depends_on:
       - api
     networks:
@@ -43,8 +43,6 @@ services:
     build:
       context: .
       dockerfile: docker/nginx.Dockerfile
-    volumes:
-      - ./frontend:/usr/share/nginx/html:ro
     ports:
       - 8080:80
     depends_on:
