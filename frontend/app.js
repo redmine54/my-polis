@@ -16,12 +16,16 @@ function toTable(obj) {
     return "<p>データがありません</p>";
   }
 
-  let html = "<table border='1' style='border-collapse: collapse;'>";
+  // スクロール可能なコンテナ（最大10行分の高さ）
+  let html = `
+    <div style="max-height: 250px; overflow-y: auto; border: 1px solid #ccc;">
+      <table border='1' style='border-collapse: collapse; width: 100%;'>
+  `;
 
   // ヘッダー行
   html += "<tr>";
   for (const key of Object.keys(obj[0])) {
-    html += `<th>${key}</th>`;
+    html += `<th style="background:#f0f0f0; position: sticky; top: 0;">${key}</th>`;
   }
   html += "</tr>";
 
@@ -34,7 +38,11 @@ function toTable(obj) {
     html += "</tr>";
   }
 
-  html += "</table>";
+  html += `
+      </table>
+    </div>
+  `;
+
   return html;
 }
 
@@ -42,8 +50,8 @@ document.getElementById("run").addEventListener("click", async () => {
   const res = await fetch("/api/analysis/run", { method: "POST" });
   const data = await res.json();
 
-  console.log("clusters:", data.clusters);
-  console.log("consensus:", data.consensus);
+  //console.log("clusters:", data.clusters);
+  //console.log("consensus:", data.consensus);
 
   document.getElementById("clusters").innerHTML = toTable(data.clusters);
   document.getElementById("consensus").innerHTML = toTable(data.consensus);
