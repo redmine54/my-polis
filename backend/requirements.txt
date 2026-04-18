@@ -10,3 +10,4 @@ scikit-learn
 pandas
 python-dotenv
 npm
+python-multipart
