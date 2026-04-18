@@ -42,7 +42,6 @@ function toTable(obj) {
       </table>
     </div>
   `;
-
   return html;
 }
 
